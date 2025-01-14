@@ -19,7 +19,7 @@ import { useUser } from "@clerk/nextjs";
 
 function MobileNavbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const { isSignedIn,userId} = useAuth();   // we can't use currentUser as it is client component
+  const { isSignedIn} = useAuth();   // we can't use currentUser as it is client component
   const { theme, setTheme } = useTheme();
   const { user } = useUser();
 
