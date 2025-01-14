@@ -13,6 +13,7 @@ import { HeartIcon, LogInIcon, MessageCircleIcon, SendIcon } from "lucide-react"
 import { Textarea } from "./ui/textarea";
 import {formatDistanceToNow} from 'date-fns'
 import { DeleteAlertDialog } from "./DeleteAlertDialog";
+import Image from "next/image";
 
 type Posts= Awaited<ReturnType<typeof getPosts>>
 
@@ -40,6 +41,7 @@ function PostCard ({post,dbUserId}:{post:Post;dbUserId:string | null}) {
         await toggleLike(post.id)
         
        } catch (error) {
+        console.error("Error toggling like:", error); 
           setOptmisticLikes(post._count.likes);
           setHasLiked(post.likes.some(like=> like.userId===dbUserId));
 
@@ -60,6 +62,7 @@ function PostCard ({post,dbUserId}:{post:Post;dbUserId:string | null}) {
         }
         
        } catch (error) {
+        console.error("Error adding comment:", error); 
         toast.error('Failed to add comment');
         
        }finally{
@@ -75,6 +78,7 @@ function PostCard ({post,dbUserId}:{post:Post;dbUserId:string | null}) {
         if (result.success) toast.success("Post deleted successfully");
         else throw new Error(result.error);
       } catch (error) {
+        console.error("Error deleting post:", error);
         toast.error("Failed to delete post");
       } finally {
         setIsDeleting(false);
@@ -121,7 +125,13 @@ function PostCard ({post,dbUserId}:{post:Post;dbUserId:string | null}) {
           {/* POST IMAGE */}
           {post.image && (
             <div className="rounded-lg overflow-hidden">
-              <img src={post.image} alt="Post content" className="w-full h-auto object-cover" />
+              <Image
+      src={post.image}
+      alt={post.content ? post.content.slice(0, 100) : "Post image"} 
+      width={800} 
+      height={600} 
+      className="object-cover w-full h-auto"
+    />
             </div>
           )}
 
