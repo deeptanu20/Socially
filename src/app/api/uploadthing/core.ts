@@ -20,6 +20,7 @@ export const ourFileRouter = {
       return { userId };
     })
     .onUploadComplete(async ({ metadata, file }) => {
+      console.log("Upload Metadata:", metadata);
       try {
         return { fileUrl: file.url };
       } catch (error) {

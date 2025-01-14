@@ -60,7 +60,9 @@ function ProfilePageClient({
   });
 
   const handleEditSubmit = async () => {
-    const formData = new FormData();
+
+    try {
+      const formData = new FormData();
     Object.entries(editForm).forEach(([key, value]) => {
       formData.append(key, value);
     });
@@ -70,6 +72,13 @@ function ProfilePageClient({
       setShowEditDialog(false);
       toast.success("Profile updated successfully");
     }
+      
+    } catch (error) {
+      console.error("Failed to update profile:", error); 
+    toast.error("An error occurred while updating your profile");
+      
+    }
+    
   };
 
   const handleFollow = async () => {
