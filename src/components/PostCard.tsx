@@ -130,7 +130,8 @@ function PostCard ({post,dbUserId}:{post:Post;dbUserId:string | null}) {
       alt={post.content ? post.content.slice(0, 100) : "Post image"} 
       width={800} 
       height={600} 
-      className="object-cover w-full h-auto"
+      className="object-cover w-full h-auto"      
+      priority
     />
             </div>
           )}

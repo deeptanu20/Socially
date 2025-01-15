@@ -16,8 +16,8 @@ export default async function Home() {
   const dbUserId=await getDbUserId();
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
-    <div className="lg:col-span-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-6">
+    <div className="md:col-span-2 lg:col-span-6">
 
 
 
@@ -35,7 +35,7 @@ export default async function Home() {
 
     </div>
      
-   <div className="hidden lg:block lg:col-span-4 sticky top-20">
+   <div className="col-span-1 md:col-span-2 lg:col-span-4 sticky top-20">
      <WhoToFollow/>
    </div>
 
